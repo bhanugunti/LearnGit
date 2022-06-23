@@ -1,0 +1,454 @@
+https://github.com/somasekhar1/python1
+
+oops :
+* oops stands for object oriented programing system.it is a machanisam to write comupter programe using class and object.
+* 4 pillars of oops
+1.Abstraction.
+2.Encapsulation.
+3.Polymorphism.
+4.Inheritance.
+
+
+1.Abstraction:-
+
+Abstraction is process of providing necessery data and hiding un-necessary data.
+
+(Abstraction is used to hide internal functionality of function from the users. 
+the users interact with the basic implementation of function)
+
+abstract class: If a class contains atleast one abstract method is called abstract class
+
+Abstract method:A method without definition
+
+concrete class(subclass):if a class does not contain any abstract method
+
+Abstraction:Abstraction is a machanism of declaring some methods but not instantiated.
+
+->declared methods are implemented in its sub class
+->we can not create a object for abstract class.we can create an object for concrete class
+
+ An electrical switchboard is one of the real world examples of Abstraction. 
+A switchboard provides us with a simple way of switching ON or OFF electrical equipments 
+while hiding all the details of the electrical circuitry, current, etc.
+
+abstraction example program:-
+
+from abc import ABC, abstractmethod
+
+class Car(ABC):
+	@abstractmethod 
+	def mileage(self):
+		pass
+class Tesla(Car):
+	def mileage(self):
+		print("the mileage of the car is 30kmph")
+
+class Suziki(Car):
+	def mileage(self):
+		print ("the mileage of the car is 25kmph")
+class Duster(Car):
+	def mileage(self):
+		print ("the mileage of the car is 24kmph")
+t=Tesla()
+t.mileage()
+s=Suziki()
+s.mileage()
+d=Duster()
+d.mileage()
+
+Note:-why we can not create the object for abstract class in python
+Because an abstract class is an incomplete class (incomplete in the sense it contains 
+abstract methods without body and output) we cannot create an instance or object
+
+
+2.encapsulation:-
+
+encapsulation is a process of binding related state and behaviour
+(variable and methods)together into a single unit of a class.
+
+Encapsulation provides Data hiding and data protection.
+
+The common example of encapsulation is capsule. In capsule 
+all medicine are encapsulated in side capsule.
+
+Data protection through access specifiers
+1.private: can access inside the class and class methods
+2.protected: can access inside the class and immediate subclass
+3.public: can access entire program 
+
+example program using public specifier
+
+class Robo:
+	x=100
+	def chitti(self):
+		print("Hello")
+obj=Robo()
+obj.chitti() #Hello
+print(obj.x) #100
+
+example program using private specifier:
+
+class Robo:
+	__x=100
+	def chitti(self):
+		print("Hi")
+		print(self.__x)
+obj=Robo()
+obj.chitti() # Hi 100
+print(obj.__x) #error
+
+
+3.Polymorphism:-
+
+(polymorphism is process defineing multiple methods with samename with different logic(parameters).
+
+in Python, Polymorphism lets us define methods in the child class that have the same name as the methods in the parent class. 
+In inheritance, the child class inherits the methods from the parent class. However, it is possible to modify a method in a 
+child class that it has inherited from the parent class.)
+
+It is a concept of object oriented programing. which means multiple forms.
+->polymorphism allows us to perform the same action in many different ways.
+
+This polymorphism is accomplished in two distinct ways: 
+1.overloading 
+2.overriding
+
+1.overloading:- The process of calling the same method with different parameters is known as method overloading.
+
+overloading allows same class with same method names and different parameters
+
+in python method overloading can be achieved with help of default arguments
+overloadding example program:-
+class A:
+	def add(self,a,b,c=0,d=1)
+		print(a+b+c+d)
+a=add()
+a.add(2,3)
+a.add(2,3,4)
+a.add(2,3,4,5)
+
+2.overriding:- This process of re-implementing the inherited method in the child class is known as Method Overriding
+
+overriding allows different classes with same method names and same parameters 
+
+overriding example program:-
+class Father:
+	def Transportation(self):
+		print("Cycle")
+clss Son(Father):
+	def  Transportation(self):
+		print("Bike")
+s=Son()
+s.Transportation() #Bike
+
+
+4.inheritance:-
+Inheritance is the capability of one class to inherit the properties from another class. 
+
+
+The class from which a child class derives the members are called parent class or superclass.
+
+The class inheriting from another class is a child class or also called a derived class. 
+
+
+
+types of inheritance:
+
+1.single inheritance
+2.multiple inherintance
+3.multilevel inheritance
+4.hierarchical inheritance
+5.hybrid inheritance
+
+1.single inheritance :
+
+(Child class derives members of one parent class.)
+
+The concept of inheriting properties from one class to another class is known as single inheritance
+
+single inheritance program:-
+
+class P:
+    def m1(self):
+         print("parent method")
+
+class C(P):
+    def m2(self):
+         print("child method")
+
+c= C()
+c.m1()
+c.m2()
+
+output:-
+parent method
+child method
+
+
+2.multilevel inheritance:
+
+(In multilevel inheritance a derived class is create from another derived class
+
+The members of the parent class, A, are inherited by child class which is then inherited by another child class, B.
+ The features of the base class and the derived class are further inherited into the new derived class, C. 
+Here, A is the grandfather class of class C.)
+
+The concept of inheriting the properties from multiple classes to single class with the concept 
+of one after the another is known as multilevel inheritance. 
+
+multilevel inheritance example program:
+
+class P():
+	def m1(self):
+		print("parent method")
+class C(P):
+	def m2(self):
+		print("child method")
+class CC(C):
+	def m3():
+		print("sub-child method")
+c=CC()
+c.m1() #parent method
+c.m2() #child method
+c.m3() #sub-child method
+   
+
+
+3.hierarchical inheritance :
+
+(In hierarchical inheritance derived classes are created from one base class)
+
+The concept of inheriting properties from single class to multiple classes which are present in same level is known as hierachical inheritance
+
+hierarchical inheritance example program :
+
+class P:
+	def m1(self):
+		print("parent method")
+class C1(P):
+	def m2(self)
+		print("child1 method")
+class C2(P):
+	def m3(self)
+		print("child2 method")
+c1=C1()
+c1.m1() #parent method
+c1.m2() #child1 method
+c2=C2()
+c2.m1() #parent method
+c2.m3() #child2 method
+
+4.multiple inherintance:
+
+(This is achieved when one child class derives members from more than one parent class. 
+All features of parent classes are inherited in the child class.)
+
+The concept of inheriting the properties of multiple classes to single class at a time is known as multiple inheritance
+
+multiple inherintance example program:
+
+class P1:
+	def m1(self):
+		print("Parent1 method")
+
+class P2:
+	def m2(self):
+		print("Parent2 method")
+
+class C(P1,P2):
+	def m3(self):
+		print("Child method")
+
+c=C()
+c.m1() #Parent1 method
+c.m2() #Parent2 method
+c.m3() # child method
+
+
+5.hybrid inheritance :
+
+cobination all inheritance
+ 
+
+
+types methods:
+
+1.static nethod
+2.class method
+3.instance method
+
+1.static method :
+
+* static method are used to perform operation on static variables
+
+* To declare a staic method we use @staticmethod
+
+* static variable or method are available in class method and instance method
+
+class Employee:
+    company='ojas'
+    num=9705393231
+    @staticmethod
+    def details():
+        print(Employee.company)
+        print(Employee.num)
+Employee.details()
+
+2.class method:
+
+* To declare a class method we use @classmethod
+* the class method will take cls as default parameter
+* cls is a reserword which represent current class
+* clss method can access static variable and methods but not instatance variable and methods
+
+decoraters:-
+
+Decorators in Python are essentially functions that add functionality to an existing function in Python without
+ changing the structure of the function itself. They are represented the @decorator_name
+ 
+program:
+
+# decorator function to convert to lowercase
+def lowercase_decorator(function):
+   def wrapper():
+       func = function()
+       string_lowercase = func.lower()
+       return string_lowercase
+   return wrapper
+@lowercase_decorator # this is executed first
+def hello():
+   return 'Hello World'
+hello()   # output => [ 'hello' , 'world' ]
+
+generators:-
+
+generator is a function which is responsible to generate a sequence of values.
+we can write generator function just like ordinary functions, but it uses yield keyward to return values
+
+program:-
+## generate fibonacci numbers upto n
+def fib(n):
+   p, q = 0, 1
+   while(p < n):
+       yield p
+       p, q = q, p + q
+x = fib(10)    # create generator object 
+for i in fib(10):
+   print(i)    # output => 0 1 1 2 3 5 8
+
+Iterators:-
+An iterator is an object that contains a countable number of values.
+
+An iterator is an object that can be iterated upon, meaning that you can traverse through all the values.
+which consist of the methods __iter__() and __next__().
+
+Iterator vs Iterable
+Lists, tuples, dictionaries, and sets are all iterable objects. They are iterable containers 
+which you can get an iterator from.
+iterables are objects which we can access with the help of indexes(list,tuple,dictionary...)
+iterators are objects it will be remember that what i have do last time and what i have do next time .
+All these objects have a iter() method which is used to get an iterator:
+
+The __iter__() method acts similar to --init--(which allows you do some initializing), you can do operations (initializing etc.), but must always 
+return the iterator object itself.
+
+The __next__() method also allows you to do operations, and must return the next item in the sequence.
+
+program:-
+mytuple = ("apple", "banana", "cherry")
+myit = iter(mytuple)
+
+print(next(myit))
+print(next(myit))
+print(next(myit))
+
+output:
+apple
+banana
+cherry
+
+#To prevent the iteration to go on forever, we can use the StopIteration statement.
+
+stopiteration program :-
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    x = self.a
+    self.a += 1
+    return x
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+
+output:
+1
+2
+3
+4
+5
+
+*args:-
+*args is a special syntax used to pass any number of arguments in the function definition
+
+program:-
+# Python program to illustrate
+# *args for variable number of arguments
+def myFun(*argv):
+	for arg in argv:
+		print (arg)
+
+myFun('Hello', 'Welcome', 'to', 'GeeksforGeeks')
+
+output:-
+Hello
+Welcome
+to
+GeeksforGeeks
+
+
+*kargs:-
+*kargs is a special syntax used to pass any number of keyword arguments in the function definition
+
+program:-
+def tellArguments(**kwargs):
+   for key, value in kwargs.items():
+       print(key + ": " + value)
+tellArguments(arg1 = "argument 1", arg2 = "argument 2", arg3 = "argument 3")
+#output:
+# arg1: argument 1
+# arg2: argument 2
+# arg3: argument 3
+
+
+
+
+The zip() method takes one or more iterables (such as list, tuple, string, etc.) and 
+constructs the iterator of tuples where each tuple contains elements from each iterable.
+
+numbers = [1,2,3]
+str_numbers = ['One','Two','Three']
+result = zip(numbers, str_numbers)
+print(result)
+print(list(result))
+
+<zip object at 0x0000014EC4A6B788>
+[(1, 'One'), (2, 'Two'), (3, 'Three')]
+
+
+
+
+
+
+
+
+
+
